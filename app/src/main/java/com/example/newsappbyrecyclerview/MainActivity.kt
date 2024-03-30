@@ -1,9 +1,11 @@
 package com.example.newsappbyrecyclerview
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        newsListAdapter = NewsListAdapter(this)
+        newsListAdapter = NewsListAdapter(this,this)
 
 
         binding.recyclerView.adapter = newsListAdapter
@@ -75,5 +77,8 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
 
     override fun onItemClicked(item: News) {
         //Toast.makeText(this,"clicked item is $item", Toast.LENGTH_LONG).show()
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(this, Uri.parse(item.url))
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsAppByRecyclerView</string>
+    <string name="txt">Current News</string>
 </resources>
